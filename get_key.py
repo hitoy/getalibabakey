@@ -5,7 +5,7 @@ Get alibaba key
 By Hito Http://www.hitoy.org/
 """
 import urllib2,re
-def getkey(url,separator=", "):
+def key(url,separator=", "):
     header={"Accept": "text/plain","Connection":"close","User-Agent":"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.149 Safari/537.36","Referer":"https://www.google.com/"}
     if not url: return
     req = urllib2.Request(url,headers=header)
