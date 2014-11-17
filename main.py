@@ -23,22 +23,22 @@ def savekey(keylist):
     fcntl.flock(handle,fcntl.LOCK_UN)
     handle.close()
 
-def geturl(count):
+def geturl(page):
     try:
-        if count < 0: return
-        urllist=get_url.List(keyword,count).listurl()
+        if page > 500: return
+        urllist=get_url.List(keyword,page).listurl()
         if len(urllist):
-            count = count - len(urllist)
             saveurl(urllist,'urllist.txt')
         time.sleep(t)
-        return geturl(count)
+        page = page + 1
+        return geturl(page)
     except KeyboardInterrupt,e:
         return
 
 def getkey():
     ul=open("urllist.txt","r")
     while True:
-	try:
+        try:
             url = ul.readline().strip()
             if not url: break
             keylist=get_key.key(url)
@@ -53,7 +53,7 @@ def getkey():
     ul.close()
 
 t = 10
-count = 20000
+page = 1
         
 if not sys.argv[1:]:
     keyword = raw_input("Must Input a keyword: ").strip()
@@ -66,7 +66,7 @@ if '-t' in sys.argv:
     t = sys.argv.index('-t')+1
     t = int(sys.argv[t])
 if not 'getkey' in sys.argv:
-    geturl(count)
+    geturl(page)
 else:
     print "Get Alibaba keyword....."
     getkey()
