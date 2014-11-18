@@ -27,7 +27,7 @@ def geturl(page):
     try:
         if page > 500: return
         urllist=get_url.List(keyword,page).listurl()
-        if len(urllist):
+        if urllist:
             saveurl(urllist,'urllist.txt')
         time.sleep(t)
         page = page + 1
