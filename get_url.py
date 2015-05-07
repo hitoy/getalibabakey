@@ -21,6 +21,6 @@ class List:
 
     def listurl(self):
         if not self.content: return False
-        reurl = re.compile(r'<a\sid="link-\d"\sclass="yschttl\sspt".*?(www.alibaba.com.*?)\/.*?>',re.I|re.M)
+        reurl = re.compile(r'<a\sclass="\sac-algo ac-21th"\shref=.*?RU=http%3a%2f%2f(\S+)/RK=0/.*?"',re.I|re.M)
         url=reurl.findall(self.content)
         return map(urllib.unquote,url)
